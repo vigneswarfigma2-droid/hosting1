@@ -19,6 +19,7 @@ try {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.resolve(__dirname, '..');
+const DIST_DIR = path.resolve(PROJECT_ROOT, 'dist');
 
 const app = express();
 app.set('trust proxy', 1); // honor X-Forwarded-* behind a reverse proxy
@@ -83,7 +84,7 @@ app.use('/api/payment', paymentRoutes);
 // Comment out the next block if you serve the frontend separately (Nginx, Netlify, etc).
 if (config.env !== 'development') {
     app.use(
-        express.static(PROJECT_ROOT, {
+        express.static(DIST_DIR, {
             index: 'index.html',
             extensions: ['html'],
             maxAge: '1h',
@@ -92,7 +93,7 @@ if (config.env !== 'development') {
     // SPA-ish fallback: any unmatched GET that doesn't start with /api → 404.html
     app.get('*', (req, res, next) => {
         if (req.path.startsWith('/api/')) return next();
-        res.status(404).sendFile(path.join(PROJECT_ROOT, '404.html'));
+        res.status(404).sendFile(path.join(DIST_DIR, '404.html'));
     });
 }
 
