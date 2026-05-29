@@ -39,16 +39,35 @@ app.use(compression());
 
 // ─── CORS ───
 app.use(
-    cors({
-        origin: (origin, cb) => {
-            // No origin = same-origin request or curl. Allow.
-            if (!origin) return cb(null, true);
-            if (config.corsOrigins.length === 0) return cb(null, true);
-            if (config.corsOrigins.includes(origin)) return cb(null, true);
-            logger.warn('CORS blocked origin:', origin);
-            return cb(new Error(`Origin ${origin} not allowed by CORS`));
-        },
-        credentials: true,
+    cors((req, callback) => {
+        const origin = req.header('Origin');
+        const requestHost = req.get('host');
+        let allow = false;
+
+        if (!origin) {
+            allow = true;
+        } else {
+            try {
+                const originHost = new URL(origin).host;
+                // Always allow same-origin requests (e.g. Railway domains or local dev ports)
+                if (originHost === requestHost) {
+                    allow = true;
+                } else if (config.corsOrigins.length === 0) {
+                    allow = true;
+                } else if (config.corsOrigins.includes(origin)) {
+                    allow = true;
+                } else {
+                    logger.warn('CORS blocked origin:', origin);
+                }
+            } catch (err) {
+                logger.warn('CORS failed to parse origin:', origin, err.message);
+            }
+        }
+
+        callback(null, {
+            origin: allow,
+            credentials: true,
+        });
     })
 );
 
