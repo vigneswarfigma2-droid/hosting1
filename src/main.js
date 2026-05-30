@@ -593,10 +593,12 @@
         });
 
         $$('[data-plan-cta]').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
+            btn.addEventListener('click', () => {
+                // Natural navigation to the cart page — never launch Razorpay
+                // directly from the plan CTA. cart.html collects details and
+                // starts checkout itself via cart.js → payment.js.
                 const id = btn.dataset.planId;
-                window.fraylonHooks.onPlanSelect(id, currentDuration);
+                window.location.href = `cart.html?plan=${encodeURIComponent(id)}&duration=${currentDuration}`;
             });
         });
     }
@@ -1150,33 +1152,11 @@
      * Return a string from a hook to display a custom success message in the UI.
      */
     window.fraylonHooks = window.fraylonHooks || {
-        async onPlanSelect(planId, months) {
+        onPlanSelect(planId, months) {
             console.log('[fraylon] onPlanSelect', planId, months);
-            try {
-                const { startCheckout } = await import('./payment.js');
-                await startCheckout({
-                    planId,
-                    durationMonths: months,
-                    onSuccess: (v) => {
-                        window.location.href = `details.html?orderId=${encodeURIComponent(v.orderId)}&status=paid`;
-                    },
-                    onFailure: (err) => {
-                        console.error('Checkout failed', err);
-                        const toast = document.getElementById('toast');
-                        if (toast) {
-                            toast.textContent = err.message || 'Payment failed. Please try again.';
-                            toast.className = 'mw-toast show error';
-                            setTimeout(() => toast.classList.remove('show'), 4000);
-                        } else {
-                            alert(err.message || 'Payment failed.');
-                        }
-                    },
-                });
-            } catch (err) {
-                console.error('Could not start checkout', err);
-                // Fallback to the static cart page.
-                window.location.href = `cart.html?plan=${encodeURIComponent(planId)}&duration=${months}`;
-            }
+            // Route through the cart page — checkout is started from cart.html
+            // (cart.js → payment.js), never directly from a plan CTA.
+            window.location.href = `cart.html?plan=${encodeURIComponent(planId)}&duration=${months}`;
         },
         onDurationChange(months) {
             console.log('[fraylon] onDurationChange', months);
