@@ -33,7 +33,11 @@
       "Bash(dir *)",
       "Bash(node *)",
       "Bash(npm run *)",
-      "PowerShell(Get-Content *)"
+      "PowerShell(Get-Content *)",
+      "PowerShell(node --check src/payment.js; if \\($?\\) { \"PARSE_OK\" } ; git status --short)",
+      "PowerShell(git *)",
+      "PowerShell(git status *)",
+      "PowerShell($v = git ls-files VERSION; if \\([string]::IsNullOrEmpty\\($v\\)\\) { \"NO_VERSION_TRACKED\" } else { \"VERSION_TRACKED: $v\" }; \"--- branch status ---\"; git status -sb | Select-Object -First 3)"
     ]
   },
   "enabledMcpjsonServers": [
