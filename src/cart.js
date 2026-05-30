@@ -317,6 +317,7 @@ function wireCheckoutButton() {
                 durationMonths: state.durationMonths,
                 notes: state.coupon ? { coupon: state.coupon } : undefined,
                 onSuccess: (v) => {
+                    console.log('Payment verified, redirecting to success');
                     setStatus('Payment confirmed. Redirecting…', 'success');
                     setTimeout(() => {
                         location.href = `success.html?orderId=${encodeURIComponent(v.orderId)}`;

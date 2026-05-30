@@ -135,7 +135,15 @@ export async function startCheckout(opts) {
                     onSuccess?.(verified);
                     resolve({ status: 'paid', ...verified });
                 } catch (err) {
+                    // Log the full error so a blank/redirect-failure after
+                    // payment can be diagnosed from the browser console.
                     console.error('[fraylon] verify-payment failed', err);
+                    console.log('[fraylon] verify-payment error detail:', {
+                        message: err?.message,
+                        code: err?.code,
+                        status: err?.status,
+                        details: err?.details,
+                    });
                     onFailure?.(err);
                     resolve({ status: 'verification_failed', error: err });
                 }
