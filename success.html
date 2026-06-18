@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Fraylon Hosting</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .success-wrap {
+            max-width: 560px;
+            margin: 64px auto;
+            padding: 48px 32px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(15, 23, 42, 0.06);
+            text-align: center;
+        }
+        .success-icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: #ecfdf5;
+            color: #16a34a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+        }
+        .success-heading {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin: 0 0 12px;
+        }
+        .success-message {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.6;
+            margin: 0 0 28px;
+        }
+        .success-order-id {
+            display: inline-block;
+            padding: 8px 14px;
+            background: #f1f5f9;
+            color: #334155;
+            font-family: ui-monospace, "SF Mono", Menlo, monospace;
+            font-size: 13px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+        }
+        .success-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-success-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 28px;
+            background: #146EF5;
+            color: #fff;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.15s ease;
+        }
+        .btn-success-home:hover { background: #0f5ad6; }
+    </style>
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body class="cart-page">
+    <header class="cart-header">
+        <div class="container">
+            <div class="header-inner">
+                <img src="logo.png" alt="Fraylon Hosting" class="cart-logo">
+                <div class="trust-indicators">
+                    <div class="trust-item">Built for Indian businesses</div>
+                    <div class="divider"></div>
+                    <div class="trust-item">Indian company since 2025</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-main">
+        <div class="container">
+            <div class="success-wrap">
+                <div class="success-icon"><i class="fas fa-check"></i></div>
+                <h1 class="success-heading">Payment Successful</h1>
+                <!-- [SUCCESS MESSAGE] -->
+                <p class="success-message">Your plan has been activated. Check your email for details.</p>
+                <div class="success-order-id" id="successOrderId" hidden></div>
+                <div class="success-actions">
+                    <a href="index.html" class="btn-success-home">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cart-footer-main">
+        <div class="container">
+            <div class="footer-top">
+                <img src="logo.png" alt="Fraylon Hosting" class="footer-logo">
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">© 2025-2026 Fraylon Hosting. All rights reserved.</div>
+                <div class="footer-links">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="mw-mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mw-mobile-nav" id="mobileNav">
+        <div class="mw-mobile-nav-header">
+            <img src="logo.png" alt="Fraylon Hosting" class="mw-mobile-logo">
+            <button class="mw-mobile-close" id="mobileClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
+        </div>
+        <ul class="mw-mobile-nav-ul">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Hosting</a></li>
+            <li><a href="#">WordPress</a></li>
+            <li><a href="#">VPS &amp; Dedicated</a></li>
+            <li><a href="#">Domain &amp; Email</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+        </ul>
+        <a href="index.html" class="btn btn-mw-primary mw-mobile-cta">My Account</a>
+    </nav>
+
+    <script>
+    (function () {
+        var params = new URLSearchParams(location.search);
+        var orderId = params.get('orderId');
+        if (orderId) {
+            var el = document.getElementById('successOrderId');
+            if (el) {
+                el.textContent = 'Order ID: ' + orderId;
+                el.hidden = false;
+            }
+        }
+        var btn = document.getElementById('hamburgerBtn');
+        var nav = document.getElementById('mobileNav');
+        var overlay = document.getElementById('mobileOverlay');
+        var cls = document.getElementById('mobileClose');
+        function openNav() { nav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeNav() { nav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+        if (btn) btn.addEventListener('click', openNav);
+        if (cls) cls.addEventListener('click', closeNav);
+        if (overlay) overlay.addEventListener('click', closeNav);
+    })();
+    </script>
+</body>
+</html>

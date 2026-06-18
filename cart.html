@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Fraylon Hosting</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body class="cart-page">
+    <header class="cart-header">
+        <div class="container cart-header-container">
+            <div class="mw-logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Fraylon Logo">
+                </a>
+            </div>
+            <div class="cart-trust-badges">
+                <div class="trust-badge">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>4.8/5 from 13,345 reviews on <strong>Trustpilot</strong></p>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-badge">
+                    <p>Built for <strong>Indian businesses</strong></p>
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-badge">
+                    <p>Indian company since 2025</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-main">
+        <div class="container cart-container">
+            <div class="checkout-steps">
+                <div class="step-line"></div>
+                <div class="step active">
+                    <span class="step-num">1</span>
+                    <span class="step-text">Choose Plan</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <span class="step-text">Your Details</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <span class="step-text">Secure Payment</span>
+                </div>
+            </div>
+
+            <div class="cart-grid">
+                <div class="cart-left">
+                    <div class="cart-card unified-cart-card">
+                        <div class="plan-selector-section">
+                            <h2 class="cart-card-title">Premium plan</h2>
+                            
+                            <div class="period-selector-wrapper">
+                                <label>Period</label>
+                                <div class="period-grid">
+                                    <div class="period-left">
+                                        <div class="cart-dropdown-container" id="cartDurationContainer">
+                                            <div class="cart-dropdown-trigger" id="cartDurationTrigger">
+                                                <span>48 months</span>
+                                                <i class="fas fa-chevron-down"></i>
+                                            </div>
+                                            <div class="cart-dropdown-menu">
+                                                <div class="cart-dropdown-option" data-months="12">
+                                                    <span class="months">12 months</span>
+                                                    <span class="price">₹189/mo</span>
+                                                </div>
+                                                <div class="cart-dropdown-option" data-months="24">
+                                                    <span class="months">24 months</span>
+                                                    <span class="price">₹169/mo</span>
+                                                </div>
+                                                <div class="cart-dropdown-option" data-months="36">
+                                                    <span class="months">36 months</span>
+                                                    <span class="price">₹119/mo</span>
+                                                </div>
+                                                <div class="cart-dropdown-option selected" data-months="48">
+                                                    <span class="months">48 months</span>
+                                                    <span class="price">₹99/mo</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="plan-feature-line">
+                                            <i class="far fa-check-circle"></i>
+                                            <span>Includes free domain for 1 year + 3 extra months</span>
+                                            <div class="info-tooltip-wrapper">
+                                                <i class="far fa-question-circle"></i>
+                                                <div class="info-tooltip">
+                                                    Get a free domain for 1 year when you buy a hosting plan for 1 year or more. Choose from .COM or .IN or .CO.IN. Standard renewal rates apply after the first year.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="period-right">
+                                        <div class="save-badge">Save ₹19,200</div>
+                                        <div class="pricing-stack">
+                                            <span class="old-price">₹499/mo</span>
+                                            <span class="main-price">₹99/mo</span>
+                                        </div>
+                                        <p class="billing-info">Billed today for selected term</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="renewal-banner">
+                                <i class="fas fa-lock"></i>
+                                <span>Same price at renewal — guaranteed.</span>
+                            </div>
+                        </div>
+
+                        <div class="cart-divider"></div>
+
+                        <div class="domain-alert-section" id="domainCard">
+                            <div class="domain-alert-header">
+                                <i class="fas fa-globe"></i>
+                                <div class="header-text">
+                                    <h3>Your free domain is reserved with this order</h3>
+                                    <p>Claim it now or later from your account</p>
+                                </div>
+                                <i class="fas fa-chevron-down collapse-icon"></i>
+                            </div>
+                            <div class="domain-card-body">
+                                <div class="domain-search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" placeholder="Search your free domain">
+                                </div>
+                                <a href="javascript:void(0)" class="choose-domain-later" id="skipDomain">Choose domain later</a>
+                            </div>
+                        </div>
+
+                        <div class="cart-divider"></div>
+
+                        <div class="cart-footer-badges">
+                            <div class="f-badge"><i class="fas fa-bolt"></i> Instant setup after payment</div>
+                            <div class="f-badge"><i class="fas fa-calendar-check"></i> 30-day money-back guarantee</div>
+                            <div class="f-badge"><i class="fas fa-headset"></i> 24/7 expert support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-right">
+                    <div class="order-summary-card">
+                        <h2 class="summary-title">Order Summary</h2>
+                        <div class="summary-item main-item">
+                            <span class="item-name">Premium plan</span>
+                        </div>
+                        <div class="summary-details">
+                            <div class="detail-row">
+                                <span class="label">48-month plan</span>
+                                <span class="value"><span class="old">₹23,952</span> ₹4,752</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">+ 3 extra months</span>
+                                <span class="value"><span class="old">₹1,497</span> ₹0</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">+ Free domain for 1 year</span>
+                                <span class="value"><span class="old">₹1,199</span> ₹0</span>
+                            </div>
+                            <div class="detail-row" id="discountRow" style="display: none; align-items: center; color: #16a34a; font-weight: 600;">
+                                <span class="label" style="color: #16a34a; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-tag"></i>
+                                    <span>DEAL10 applied (10% off) <a href="javascript:void(0)" id="removeCoupon" style="color: #94a3b8; font-size: 12px; text-decoration: underline; margin-left: 4px; font-weight: 400;">remove</a></span>
+                                </span>
+                                <span class="value discount">-₹475.2</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span class="label">Subtotal</span>
+                                <span class="value" id="summarySubtotal">₹4,752</span>
+                            </div>
+                            <div class="total-row">
+                                <span class="label">GST (18%)</span>
+                                <span class="value" id="summaryGST">₹855.36</span>
+                            </div>
+                        </div>
+
+                        <div class="grand-total-row">
+                            <span class="label">Amount to pay today</span>
+                            <span class="value" id="summaryTotal">₹5,607.36</span>
+                        </div>
+                        
+                        <div class="coupon-section">
+                            <p class="coupon-label">Unlock extra savings</p>
+                            <div class="coupon-input-group">
+                                <input type="text" placeholder="Enter coupon code">
+                                <button class="btn-apply">Apply</button>
+                            </div>
+                        </div>
+
+                        <p class="total-savings-text">Your total savings: <span>₹25,837.28</span></p>
+
+                        <button class="btn-checkout" id="cartPayButton" type="button">
+                            <span class="cart-pay-label">Continue to Payment</span>
+                            <span class="cart-pay-spinner" hidden><i class="fas fa-spinner fa-spin"></i></span>
+                        </button>
+                        <p class="cart-pay-status" id="cartPayStatus" role="status" aria-live="polite"></p>
+
+                        <div class="checkout-trust-line">
+                            <i class="far fa-check-circle"></i>
+                            <span>30-day money-back guarantee</span>
+                        </div>
+
+                        <div class="payment-methods-section">
+                            <p class="payment-label">Pay securely via UPI, cards or net banking.</p>
+                            <div class="payment-grid">
+                                <div class="p-icon"><img src="./src/assets/visa_icon.svg" alt="Visa"></div>
+                                <div class="p-icon"><img src="./src/assets/mastercard_icon.svg" alt="Mastercard"></div>
+                                <div class="p-icon"><img src="./src/assets/rupay_icon.svg" alt="RuPay"></div>
+                                <div class="p-icon"><img src="./src/assets/upi_icon.svg" alt="UPI"></div>
+                                <div class="p-icon"><img src="./src/assets/gpay_icon.svg" alt="GPay"></div>
+                                <div class="p-icon"><img src="./src/assets/phone-pe.svg" alt="PhonePe"></div>
+                                <div class="p-icon"><img src="netbanking.svg" alt="Net Banking"></div>
+                            </div>
+                        </div>
+                        <p class="no-hidden-charges-text">No hidden charges • Same price at renewal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="cart-simple-footer">
+        <div class="container">
+            <div class="simple-footer-content">
+                <p>© Copyright 2025 - 2026 Fraylon Hosting</p>
+                <div class="footer-links">
+                    <span>Company Registration No. 289947</span>
+                    <span>GSTIN 27AAKCM0202D1Z2</span>
+                    <a href="#">Terms of service</a>
+                    <a href="#">Privacy policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Cart logic (state sync, dropdown, coupon, checkout, mobile nav) lives in src/cart.js -->
+<div class="mw-mobile-overlay" id="mobileOverlay"></div>
+<nav class="mw-mobile-nav" id="mobileNav">
+    <div class="mw-mobile-nav-header">
+        <img src="logo.png" alt="Fraylon Hosting" class="mw-mobile-logo">
+        <button class="mw-mobile-close" id="mobileClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+    <ul class="mw-mobile-nav-ul">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Hosting</a></li>
+        <li><a href="#">WordPress</a></li>
+        <li><a href="#">VPS &amp; Dedicated</a></li>
+        <li><a href="#">Domain &amp; Email</a></li>
+        <li><a href="#">Pricing</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+    </ul>
+    <a href="mailto:support@fraylon.com?subject=Account%20Login%20Request" class="btn btn-mw-primary mw-mobile-cta">My Account</a>
+</nav>
+<script type="module" src="./src/cart.js"></script>
+</body>
+</html>
+
+
+

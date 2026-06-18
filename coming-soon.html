@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex,follow">
+    <title>Coming Soon | Fraylon Hosting</title>
+    <meta name="description" content="This Fraylon page is launching soon. Browse our hosting plans, talk to support, or get notified when it goes live.">
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body class="cs-body">
+    <header class="mw-header">
+        <div class="container mw-nav-container">
+            <div class="mw-logo-wrapper">
+                <div class="mw-logo">
+                    <a href="index.html" aria-label="Fraylon Hosting — home">
+                        <img src="logo.png" alt="Fraylon">
+                    </a>
+                </div>
+            </div>
+            <div class="mw-header-actions">
+                <a href="index.html#plans-section" class="btn btn-mw-primary">View Plans</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="cs-main">
+        <div class="container">
+            <section class="cs-card">
+                <span class="cs-eyebrow"><span class="eyebrow-pulse" aria-hidden="true"></span> Launching soon</span>
+                <h1>This page is being built.</h1>
+                <p>We're polishing the details so it lives up to the rest of Fraylon. In the meantime, here's where to go.</p>
+
+                <div class="cs-actions">
+                    <a href="index.html#plans-section" class="btn btn-mw-primary">Browse hosting plans <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                    <a href="index.html#contact" class="btn btn-mw-secondary">Talk to support</a>
+                </div>
+
+                <form class="cs-notify" id="csNotifyForm" novalidate>
+                    <label for="csNotifyEmail">Notify me when it's live</label>
+                    <div class="cs-notify-row">
+                        <input type="email" id="csNotifyEmail" name="email" placeholder="you@example.com" required autocomplete="email">
+                        <button type="submit" class="btn btn-mw-primary">Notify me</button>
+                    </div>
+                    <p class="cs-notify-msg" id="csNotifyMsg" role="status" aria-live="polite"></p>
+                </form>
+
+                <div class="cs-back">
+                    <a href="index.html"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to home</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="mw-footer cs-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="copyright-row">
+                    <p>© 2025 - 2026 Fraylon Hosting. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('csNotifyForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            var msg = document.getElementById('csNotifyMsg');
+            var email = document.getElementById('csNotifyEmail').value.trim();
+            if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+                msg.textContent = 'Please enter a valid email address.';
+                msg.className = 'cs-notify-msg error';
+                return;
+            }
+            msg.textContent = "Thanks — we'll email " + email + " when it's live.";
+            msg.className = 'cs-notify-msg success';
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
