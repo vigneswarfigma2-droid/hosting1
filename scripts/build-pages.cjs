@@ -469,7 +469,7 @@ const WORDPRESS_BODY = `
                         <a href="pricing.html" class="btn btn-mw-primary">See Managed plans</a>
                     </div>
                     <div class="managed-card-visual">
-                        <img src="./src/assets/ai-wordpress-optimizer.avif" alt="Fraylon managed WordPress dashboard showing performance and security metrics" loading="lazy">
+                        <img src="ai-wordpress-optimizer.avif" alt="Fraylon managed WordPress dashboard showing performance and security metrics" loading="lazy">
                     </div>
                 </div>
             </div>

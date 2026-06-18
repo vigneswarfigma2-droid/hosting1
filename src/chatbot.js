@@ -43,6 +43,7 @@ import './chatbot.css';
         }
 
         injectChatMarkup();
+        updateHeaderState();
         bindEvents();
         
         if (chatHistory.length === 0) {
@@ -78,6 +79,26 @@ import './chatbot.css';
             if (isTeaserDismissed) {
                 hideTeaser(true);
             }
+        }
+    }
+
+    // Update the visual state of the header based on whether the AI Agent Mode is active
+    function updateHeaderState() {
+        const headerTextDiv = $('.chat-header .header-text');
+        if (!headerTextDiv) return;
+
+        const h4 = headerTextDiv.querySelector('h4');
+        const span = headerTextDiv.querySelector('span');
+        const header = $('.chat-header');
+
+        if (chatState && chatState.agentMode) {
+            if (h4) h4.textContent = 'Fraylon AI Support Agent';
+            if (span) span.innerHTML = '<span class="agent-pulse"></span>Connected to Gemini AI';
+            if (header) header.classList.add('agent-mode-active');
+        } else {
+            if (h4) h4.textContent = 'Fraylon Support';
+            if (span) span.textContent = 'Typically replies in a few minutes';
+            if (header) header.classList.remove('agent-mode-active');
         }
     }
 
@@ -424,6 +445,7 @@ import './chatbot.css';
             
             if (data.state) {
                 chatState = data.state;
+                updateHeaderState();
             }
 
             addBotMessage(data.reply, data.quickReplies, data.recommendation);

@@ -30,6 +30,46 @@ router.post('/message', async (req, res) => {
         sentimentEscalation = "\n\n*(It sounds like you might be having a difficult experience. If you need immediate human help, please click 'Contact support' below to speak to our 24/7 team!)*";
     }
 
+    // 1.5. Handle AI Support Agent Mode
+    const isAgentRequest = msg.includes('connect') && (msg.includes('agent') || msg.includes('human') || msg.includes('support') || msg.includes('live'))
+        || (msg.includes('talk') || msg.includes('speak') || msg.includes('chat')) && (msg.includes('agent') || msg.includes('human') || msg.includes('person') || msg.includes('someone'))
+        || msg === 'agent' || msg === 'human support' || msg === 'contact support' || msg === 'live support' || msg === 'live chat';
+
+    if (isAgentRequest && !state.agentMode) {
+        const nextState = { ...state, agentMode: true, wizardStep: null, websites: null, nodejs: null };
+        return res.json({
+            reply: "I am connecting you to our **Fraylon AI Support Agent**. I can now chat with you freely about Fraylon's services, plans, migrations, or datacenters.\n\nHow can I help you today? *(Type **exit** at any time to return to the main menu)*",
+            quickReplies: ["What plans do you have?", "Do you offer free migration?", "Tell me about datacenters", "Exit Agent Mode"],
+            state: nextState
+        });
+    }
+
+    if (state.agentMode) {
+        if (msg === 'exit agent mode' || msg === 'exit' || msg === 'return' || msg === 'main menu') {
+            const nextState = { ...state, agentMode: null };
+            return res.json({
+                reply: "You have exited AI Agent Mode. How else can I assist you today?",
+                quickReplies: ["Help me choose a plan", "What plans do you have?", "Contact support"],
+                state: nextState
+            });
+        }
+
+        const geminiReply = await getGeminiResponse(message, history);
+        if (geminiReply) {
+            return res.json({
+                reply: geminiReply + sentimentEscalation,
+                quickReplies: ["Compare plans", "Contact support", "Exit Agent Mode"],
+                state: state
+            });
+        } else {
+            return res.json({
+                reply: "I'm having difficulty reaching our AI systems right now. What would you like to know about our web hosting services? Or type 'exit' to go back." + sentimentEscalation,
+                quickReplies: ["Compare plans", "Contact support", "Exit Agent Mode"],
+                state: state
+            });
+        }
+    }
+
     // 2. Handle Wizard Step: websites
     if (state.wizardStep === 'websites') {
         let websitesVal = null;
