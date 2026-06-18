@@ -154,7 +154,7 @@ Respond concisely (under 3-4 sentences if possible) and use bold text for plan n
 `;
 
     const model = genAI.getGenerativeModel({ 
-        model: 'gemini-2.0-flash',
+        model: 'gemini-2.5-flash',
         systemInstruction: systemInstruction
     });
 
